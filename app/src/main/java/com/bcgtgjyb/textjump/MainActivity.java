@@ -18,17 +18,26 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
+    private String text = "";
+    private SpannableString spannableString;
+    private List<String> list = new ArrayList<>();
+    private CommentTextView comment ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.text);
+        comment = (CommentTextView) findViewById(R.id.comment);
         initList();
         showName(list);
+        initComment();
     }
 
-    private List<String> list = new ArrayList<>();
+    private void initComment() {
+        comment.setCommentText("guo","huan","bigwen");
+    }
+
 
     private void initList() {
         for (int i = 0; i < 10; i++) {
@@ -36,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String text = "";
-    private SpannableString spannableString;
+
 
     private void showName(List<String> nameList) {
         StringBuffer nameText = new StringBuffer();
@@ -80,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View widget) {
-            Toast.makeText(MainActivity.this, "uid=" + uid, Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "uid=" + uid, Toast.LENGTH_SHORT).show();
             widget.invalidate();
         }
 
